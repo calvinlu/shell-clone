@@ -1,18 +1,12 @@
-import sys
+"""Main entry point for the shell application.
 
+This module initializes and runs the shell when executed directly.
+"""
+from shell import shell
 
 def main():
-
-
-    while True:
-        sys.stdout.write("$ ")
-        command = input()
-        match command:
-            case _:
-                print(f"{command}: command not found")
-
-    
-
+    """ Main function """
+    shell()
 
 if __name__ == "__main__":
     main()
