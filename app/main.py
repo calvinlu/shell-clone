@@ -2,11 +2,16 @@ import sys
 
 
 def main():
-    sys.stdout.write("$ ")
-    command = input()
-    match command:
-        case _:
-            print(f"{command}: command not found")
+
+
+    while True:
+        sys.stdout.write("$ ")
+        command = input()
+        match command:
+            case _:
+                print(f"{command}: command not found")
+
+    
 
 
 if __name__ == "__main__":
