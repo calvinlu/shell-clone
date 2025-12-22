@@ -5,7 +5,8 @@ This module implements a minimal shell that can be extended with additional comm
 Currently supports the 'exit' command to terminate the shell.
 """
 import sys
-from app.commands.echo import echo
+from app.commands.echo import command_echo
+from app.commands.type import command_type
 
 def shell():
     """ Shell function containing the main loop """
@@ -22,7 +23,9 @@ def shell():
             case "exit":
                 break
             case "echo":
-                echo(args)
+                command_echo(args)
+            case "type":
+                command_type(args)
             case _:
                 print(f"{command}: command not found")
                 continue
