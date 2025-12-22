@@ -10,10 +10,18 @@ def shell():
     """ Shell function containing the main loop """
     while True:
         sys.stdout.write("$ ")
-        command = input().strip()
+        user_input = input().strip()
+
+        user_input = user_input.split()
+
+        command = user_input[0]
+        args = user_input[1:]
+
         match command:
             case "exit":
                 break
+            case "echo":
+                echo(args)
             case _:
-                print(f"{command}: command not found")
+                print(f"{user_input}: command not found")
                 continue
