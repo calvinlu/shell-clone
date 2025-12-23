@@ -1,6 +1,8 @@
 """
 A command that checks whether a command is a builtin, an executable file, or unrecognized.
 """
+import os
+
 TYPE_COMMAND = "type"
 
 VALID_BUILTINS = ["echo", "type", "exit"]
@@ -11,5 +13,22 @@ def command_type(args: list[str]):
         print("type: missing operand")
         return
     argument = args[0]
-    print(f"{argument} is a shell builtin" if argument in
-     VALID_BUILTINS else f"{argument} not found")
+
+    if is_builtin(argument):
+        print(f"{argument} is a shell builtin")
+    elif is_executable(argument):
+        paths = os.environ["PATH"].split(os.pathsep)
+        for path in paths:
+            if os.path.exists(os.path.join(path, argument)):
+                print(f"{argument} is {os.path.abspath(os.path.join(path, argument))}")
+                return
+    else:
+        print(f"{argument} not found")
+
+def is_builtin(argument: str) -> bool:
+    """Checks if argument is a builtin"""
+    return argument in VALID_BUILTINS
+
+def is_executable(argument: str) -> bool:
+    """Checks if argument is an executable file"""
+    return os.path.exists(argument) and os.access(argument, os.X_OK)
