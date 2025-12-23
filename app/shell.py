@@ -4,9 +4,11 @@ A simple shell implementation that provides a basic command-line interface.
 This module implements a minimal shell that can be extended with additional commands.
 Currently supports the 'exit' command to terminate the shell.
 """
+import os
 import sys
 from app.commands.echo import command_echo
 from app.commands.type import command_type
+from app.utils import find_executable
 
 def shell():
     """ Shell function containing the main loop """
@@ -19,6 +21,9 @@ def shell():
         command = user_input[0]
         args = user_input[1:]
 
+        if find_executable(command):
+            os.execve(find_executable(command), [command] + args, os.environ)
+        
         match command:
             case "exit":
                 break
