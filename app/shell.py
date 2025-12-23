@@ -26,7 +26,7 @@ def shell():
             with subprocess.Popen([command] + args) as process:
                 process.wait()
             continue
-        
+
         match command:
             case "exit":
                 break
@@ -34,6 +34,8 @@ def shell():
                 command_echo(args)
             case "type":
                 command_type(args)
+            case "pwd":
+                command_pwd()
             case _:
                 print(f"{command}: command not found")
                 continue
