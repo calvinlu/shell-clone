@@ -1,11 +1,14 @@
 """
 A command that checks whether a command is a builtin, an executable file, or unrecognized.
 """
+from app.commands.echo import ECHO_COMMAND
+from app.commands.pwd import PWD_COMMAND
+from app.commands.exit import EXIT_COMMAND
 from app.utils import find_executable
 
 TYPE_COMMAND = "type"
 
-VALID_BUILTINS = ["echo", "type", "exit"]
+VALID_BUILTINS = [TYPE_COMMAND, ECHO_COMMAND, PWD_COMMAND, EXIT_COMMAND]
 
 def command_type(args: list[str]):
     """ Type the arguments """
