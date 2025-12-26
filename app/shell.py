@@ -10,6 +10,7 @@ import sys
 from app.commands.echo import command_echo
 from app.commands.type import command_type
 from app.commands.pwd import command_pwd
+from app.commands.cd import command_cd
 from app.utils import find_executable
 
 def shell():
@@ -37,6 +38,8 @@ def shell():
                 command_type(args)
             case "pwd":
                 command_pwd()
+            case "cd":
+                command_cd(args)
             case _:
                 print(f"{command}: command not found")
                 continue
